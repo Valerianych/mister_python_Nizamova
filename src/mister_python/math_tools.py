@@ -1,23 +1,25 @@
 def add(a, b):
-    # TODO: return sum of two numbers
-    pass
+    result = a + b
+    return result
 
 
 def subtract(a, b):
-    # TODO: return difference of two numbers
-    pass
+    result = a - b
+    return result
 
 
 def multiply(a, b):
-    # TODO: return product of two numbers
-    pass
+    result = a * b
+    return result
 
 
 def divide(a, b):
-    # TODO: check zero divisor and return division result
-    pass
+    if b == 0:
+        raise ValueError("b must not be zero")
+    result = a / b
+    return result
 
 
 def is_even(number):
-    # TODO: return True if number is even
-    pass
+    result = number % 2 == 0
+    return result
