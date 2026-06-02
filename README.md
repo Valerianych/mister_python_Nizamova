@@ -1,42 +1,44 @@
-# Практические задания по `unittest`
+# 3 лабораторные работы по `unittest`
 
-Репозиторий сделан для практики по автоматическому тестированию на Python.
-Внутри есть небольшой учебный код и набор тестов на стандартном модуле `unittest`.
+Репозиторий сделан для сдачи первых трёх модулей по автоматическому тестированию на Python.
 
-## Что есть в работе
+В работе используются стандартные средства Python: модуль `unittest`, запуск через командную строку и автопоиск тестов через `discover`.
 
-- базовые проверки через `TestCase`;
-- разные `assert`-методы;
-- запуск тестов через discovery;
-- `setUp`, `tearDown`, `addCleanup`;
-- работа с временными файлами;
-- `subTest`;
-- `skipIf` и `expectedFailure`;
-- `Mock`, `MagicMock`, `patch`, `patch.object`, `patch.dict`;
-- `spec`, `spec_set`, `autospec`;
-- проверка логов и предупреждений;
-- асинхронный тест через `IsolatedAsyncioTestCase`;
-- GitHub Actions для автоматического запуска тестов.
+## Лабораторная работа 1. База и первый тест
 
-## Как запустить
+Цель: создать минимальный проект, разделить код и тесты, написать первый автотест.
 
-Сначала можно создать виртуальное окружение:
+Что сделано:
 
-```bash
-python -m venv .venv
-```
+- создана структура проекта с папками `src` и `tests`;
+- добавлен модуль `math_tools.py`;
+- написаны первые тесты для функций `add`, `subtract`, `multiply`;
+- показан базовый цикл: есть функция, есть ожидаемый результат, тест проверяет совпадение.
 
-Активация Windows:
+## Лабораторная работа 2. Основные проверки `assert`
 
-```bash
-.venv\Scripts\activate
-```
+Цель: научиться использовать разные проверки из `unittest.TestCase`.
 
-Активация Linux/macOS:
+Что сделано:
 
-```bash
-source .venv/bin/activate
-```
+- проверка равенства через `assertEqual`;
+- проверка истинности через `assertTrue`;
+- проверка наличия элемента через `assertIn`;
+- проверка списков через `assertListEqual`;
+- проверка ошибок через `assertRaises`.
+
+## Лабораторная работа 3. Запуск тестов и discovery
+
+Цель: показать, что тесты можно запускать автоматически из папки `tests`.
+
+Что сделано:
+
+- тестовые файлы названы по шаблону `test_*.py`;
+- тесты лежат в отдельной папке `tests`;
+- проект можно запустить через `python -m unittest discover`;
+- добавлен файл GitHub Actions для автоматической проверки тестов на GitHub.
+
+## Как запустить работу
 
 Установка проекта в editable-режиме:
 
@@ -50,26 +52,29 @@ python -m pip install -e .
 python -m unittest discover -s tests -v
 ```
 
-Запуск одного файла:
+Запуск конкретной лабораторной:
 
 ```bash
-python -m unittest tests.test_practices -v
+python -m unittest tests.test_lab_01 -v
+python -m unittest tests.test_lab_02 -v
+python -m unittest tests.test_lab_03 -v
 ```
 
-## Структура
+## Структура проекта
 
 ```text
 .
 ├── src/
 │   └── mister_python/
 │       ├── __init__.py
-│       ├── async_service.py
-│       ├── file_tools.py
-│       ├── services.py
-│       └── utils.py
+│       ├── math_tools.py
+│       ├── text_tools.py
+│       └── user_service.py
 ├── tests/
 │   ├── __init__.py
-│   └── test_practices.py
+│   ├── test_lab_01.py
+│   ├── test_lab_02.py
+│   └── test_lab_03.py
 ├── .github/
 │   └── workflows/
 │       └── tests.yml
@@ -78,18 +83,6 @@ python -m unittest tests.test_practices -v
 └── README.md
 ```
 
-## Коротко по практикам
+## Вывод
 
-1. Создана структура проекта с папками `src` и `tests`.
-2. Написаны первые тесты для функций.
-3. Проверен запуск через `unittest discover`.
-4. Используются фикстуры `setUp`, `tearDown` и `addCleanup`.
-5. Есть пример ручной сборки `TestSuite`.
-6. Используются `subTest`, `skipIf`, `expectedFailure`.
-7. Есть тесты с `Mock` и `MagicMock`.
-8. Используются разные варианты `patch`.
-9. Применяются `spec`, `spec_set`, `autospec`.
-10. Замоканы файловые операции, время и внешние сервисы.
-11. Проверяются предупреждения и логи.
-12. Есть асинхронный тест.
-13. Добавлен workflow GitHub Actions.
+В результате выполнены три лабораторные работы по теме `unittest`: создан проект, написаны тесты, применены основные методы проверки и настроен запуск всех тестов через discovery.
