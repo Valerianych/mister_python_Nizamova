@@ -6,10 +6,12 @@
 
 ## Что есть в проекте
 
-- папка `src` с основным кодом;
-- папка `tests` с тестами;
-- файл `pyproject.toml` для настройки проекта;
-- файл `.gitignore` для лишних служебных файлов.
+- `labs/` — описания лабораторных работ;
+- `src/` — основной код для проверки;
+- `tests/` — тесты;
+- `tools/run_tests.py` — отдельный запуск тестов для discovery;
+- `.github/workflows/tests.yml` — автоматический запуск тестов в GitHub Actions;
+- `pyproject.toml` — настройки проекта.
 
 ## Как запустить
 
@@ -22,22 +24,42 @@ python -m pip install -e .
 Запустить все тесты:
 
 ```bash
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t . -v
 ```
 
-Запустить отдельный файл с тестами:
+Запуск unit-тестов из третьей лабораторной:
 
 ```bash
-python -m unittest tests.test_lab_01 -v
+python -m unittest discover -s tests/unit -t . -p "*_spec.py" -v
+```
+
+Запуск integration-тестов из третьей лабораторной:
+
+```bash
+python -m unittest discover -s tests/integration -t . -p "*_it.py" -v
+```
+
+Запуск через отдельный runner:
+
+```bash
+python tools/run_tests.py -v
 ```
 
 ## Структура проекта
 
 ```text
 .
+├── labs/
 ├── src/
-│   └── mister_python/
+│   ├── labtools/
+│   ├── netutils/
+│   ├── qautils/
+│   └── shop/
 ├── tests/
+│   ├── integration/
+│   └── unit/
+├── tools/
+├── .github/workflows/
 ├── .gitignore
 ├── pyproject.toml
 └── README.md
@@ -45,5 +67,4 @@ python -m unittest tests.test_lab_01 -v
 
 ## Описание
 
-В тестах проверяется работа функций, обработка ошибок и запуск тестов через `unittest discover`.
-Репозиторий можно дополнять следующими лабораторными работами.
+В репозитории собраны лабораторные работы по основным темам `unittest`: структура проекта, discovery, `TestCase`, fixtures, `TestSuite`, `subTest`, `Mock`, `patch`, `autospec`, работа с внешними зависимостями, логи, предупреждения, асинхронные тесты и CI.
